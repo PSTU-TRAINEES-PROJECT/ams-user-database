@@ -59,3 +59,27 @@ AMS-DATABASE-MANAGEMENT/
 4. **Configure the database connection:**
 
    Modify the `sqlalchemy.url` in `alembic/alembic.ini` to point to your PostgreSQL instance.
+
+
+
+5. **Generate the migration:**
+
+   ```bash
+   alembic revision --autogenerate -m "Describe your change"
+   ```
+
+
+6. **Apply the migration::**
+
+   ```bash
+   alembic upgrade head
+   ```
+
+
+7. **downgrade the migration::**
+
+   ```bash
+   alembic downgrade base
+   ```
+
+
