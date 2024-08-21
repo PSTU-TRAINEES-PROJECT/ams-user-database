@@ -44,16 +44,3 @@ class WithoutIDCommonBase:
 class CommonBase(WithoutIDCommonBase):
     id = Column(Integer, primary_key=True, index=True)
 
-
-class LogTable:
-    id = Column(Integer, primary_key=True, index=True)
-    created_at = Column(
-        DateTime(timezone=True),
-        default=current_time, nullable=False
-    )
-    @declared_attr
-    def who_performs(cls):
-        return Column(Integer, ForeignKey('users.id'))
-
-
-
