@@ -1,7 +1,7 @@
 # user.py
 from db.base import Base
 from models.common_base import CommonBase
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Column, ForeignKey, Integer, String, Boolean
 
 
 class User(Base, CommonBase):
@@ -13,6 +13,7 @@ class User(Base, CommonBase):
     last_name = Column(String(50), nullable=True)
     password_hash = Column(String(255))
     mobile = Column(String(20), nullable=True)
+    email_verified = Column(Boolean, default=False, nullable=False)
 
     # Adding the language_code foreign key
     language_code = Column(String(10), ForeignKey('languages.code'), nullable=True)
