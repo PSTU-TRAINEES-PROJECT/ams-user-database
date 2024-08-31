@@ -1,15 +1,21 @@
-version: "3.8"
-
 services:
-  postgres:
-    image: postgres
-    container_name: postgresdb
-    restart: always
-
+  ams-postgres-db:
+    image: postgres:13
+    container_name: ams-postgres-db
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=ams-database
-
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: amsdb
     ports:
-      - 5432:5433
+      - "5449:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - ams-network
+
+volumes:
+  postgres_data:
+
+networks:
+  ams-network:
+    external: true
