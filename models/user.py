@@ -1,7 +1,7 @@
-# user.py
 from db.base import Base
 from models.common_base import CommonBase
-from sqlalchemy import Column, ForeignKey, Integer, String, Boolean
+from sqlalchemy import Column, Enum, ForeignKey, Integer, String, Boolean
+from utils.enums import Status
 
 
 class User(Base, CommonBase):
@@ -14,6 +14,8 @@ class User(Base, CommonBase):
     password_hash = Column(String(255))
     mobile = Column(String(20), nullable=True)
     email_verified = Column(Boolean, default=False, nullable=False)
+    status = Column(Enum(Status), nullable=False, default=Status.INACTIVE.value, server_default=Status.INACTIVE.value)
+
 
     # Adding the language_code foreign key
     language_code = Column(String(10), ForeignKey('languages.code'), nullable=True)
