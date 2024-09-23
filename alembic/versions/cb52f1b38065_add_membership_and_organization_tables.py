@@ -1,8 +1,8 @@
-"""add  membership, and organization tables
+"""add_membership_and_organization_tables
 
-Revision ID: 8b0ebf43761b
+Revision ID: cb52f1b38065
 Revises: 2309f3af456c
-Create Date: 2024-09-07 15:50:48.081154
+Create Date: 2024-09-14 03:09:21.938878
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '8b0ebf43761b'
+revision: str = 'cb52f1b38065'
 down_revision: Union[str, None] = '2309f3af456c'
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -40,16 +40,7 @@ def upgrade() -> None:
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('organization_id', sa.Integer(), nullable=False),
     sa.Column('role', sa.String(length=50), nullable=False),
-    sa.Column('created_at', sa.DateTime(timezone=True), nullable=False),
-    sa.Column('updated_at', sa.DateTime(timezone=True), nullable=False),
-    sa.Column('deleted_at', sa.DateTime(timezone=True), nullable=True),
-    sa.Column('created_by_id', sa.Integer(), nullable=True),
-    sa.Column('updated_by_id', sa.Integer(), nullable=True),
-    sa.Column('deleted_by_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['created_by_id'], ['users.id'], ),
-    sa.ForeignKeyConstraint(['deleted_by_id'], ['users.id'], ),
     sa.ForeignKeyConstraint(['organization_id'], ['organizations.id'], ),
-    sa.ForeignKeyConstraint(['updated_by_id'], ['users.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('user_id', 'organization_id')
     )
