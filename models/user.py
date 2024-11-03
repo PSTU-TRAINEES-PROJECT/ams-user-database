@@ -15,6 +15,7 @@ class User(Base, CommonBase):
     mobile = Column(String(20), nullable=True)
     email_verified = Column(Boolean, default=False, nullable=False)
     status = Column(Enum(Status), nullable=False, default=Status.INACTIVE.value, server_default=Status.INACTIVE.value)
+    profile_image = Column(String(255), nullable=True)
 
 
     # Adding the language_code foreign key
