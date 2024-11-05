@@ -7,7 +7,6 @@ from utils.enums import Status
 class User(Base, CommonBase):
     __tablename__ = "users"
 
-    username = Column(String(30), unique=True)
     email = Column(String(100), index=True)
     first_name = Column(String(50), nullable=True)
     last_name = Column(String(50), nullable=True)
